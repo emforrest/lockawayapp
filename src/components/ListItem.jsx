@@ -11,7 +11,8 @@ function ListItem(props)
                         <label>{props.date}</label>
                     </div>
                     <div className='check_box'>
-                        <input type='checkbox' />
+                        <input id={props.id} type='checkbox' className="hidden_check_mark" checked={props.checked}/>
+                        <span className="check_mark"></span>
                     </div>
                 </div>
             </div>

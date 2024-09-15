@@ -31,6 +31,9 @@ button {
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.item:hover {
+    background-color: #f1f1f1;
+}
 
 .item_container {
     position: relative;
@@ -40,6 +43,15 @@ button {
     justify-content: space-between;
     width: 100%;
 }
+
+.item_container input {
+    /* Hide the default checkbox */
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
 
 .right {
     position: absolute;
@@ -60,8 +72,41 @@ button {
 
 }
 
-.check_box {
-    
+.hidden_check_mark {
+    display: none;
 }
 
 
+.check_box {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.check_mark {
+    width: 1.2em; 
+    height: 1.2em;
+    border: 2px solid #ccc;
+    border-radius: 5px; 
+    position: relative; 
+    background-color: #fff; 
+}
+
+
+.check_box:hover .check_mark {
+background-color: #dfdfdf; 
+}
+
+.hidden_check_mark:checked + .check_mark::after {
+content: "";
+position: relative;
+display: block;
+left: 37%;
+top: 11%;
+width: 25%;
+height: 50%;
+border: solid rgb(0, 0, 0);
+border-width: 0 3px 3px 0;
+transform: rotate(45deg); 
+}

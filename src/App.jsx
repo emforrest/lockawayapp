@@ -5,6 +5,9 @@ import ListItem from './components/ListItem';
 
 function App(props) {
 
+    const taskList = props.tasks?.map((item) => 
+      <ListItem id={item.id} task={item.task} date={item.date} checked={item.checked}/>);
+
     return (
       <>
       <div className="header_bar"></div>
@@ -17,11 +20,7 @@ function App(props) {
       <div className="current_list">
         <h1>Active Tasks</h1>
         <ul>
-            <ListItem task="Task 1" date="15/9/24 12:00"/>
-            <ListItem task="Task 2" date="16/9/24 4:00"/>
-            <ListItem task="Task 3" date="17/9/24 12:00"/>
-            <ListItem task="Task 4" date="18/9/24 12:20"/>
-            <ListItem task="Task 5" date="19/9/24 12:00"/>
+            {taskList}
         </ul>
         
       </div>
@@ -31,5 +30,5 @@ function App(props) {
   
   export default App;
   
-//w3schools - how to create header bar, check list, styling. Then add more functionality
+//keep following from Tasks as data, add header bar later
 //https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_todo_list_beginning
