@@ -1,5 +1,5 @@
 body {
-    background-color: #ece4ee;
+    background-color: #eae4ee;
     color: rgb(0, 0, 0);
     padding: 40px;
     font-family: Helvetica, Arial, sans-serif;
@@ -23,25 +23,26 @@ button {
     font-size: 1em;
 }
 
-.item {
-    display: block;
-    margin: 10px;
+ul, li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.item_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 10px;
+    margin: 10px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.item:hover {
-    background-color: #f1f1f1;
-}
 
-.item_container {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+.custom_checkbox_container {
+    display: inline-block;
+    cursor: pointer;
 }
 
 .item_container input {
@@ -51,62 +52,109 @@ button {
     cursor: pointer;
     height: 0;
     width: 0;
-  }
+  } 
 
-.right {
-    position: absolute;
-    right: 0;
+.item_container:hover {
+    background-color: #f1f1f1;
+}
+
+.item {
     display: flex;
-    gap: 20px;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .item_text {
-    margin-left: auto;
+    margin-left: auto ;
     margin-right: auto;
 }
 
 .open_date {
     font-size: 0.8em;
     color: rgb(94, 94, 94);
-
+    float: right;
+    width: 150px;
 }
 
 .hidden_check_mark {
     display: none;
 }
 
-
+/* container allowing a custom check box */
 .check_box {
     display: inline-flex;
-    align-items: center;
     cursor: pointer;
-}
-
-
-.check_mark {
     width: 1.2em; 
     height: 1.2em;
     border: 2px solid #ccc;
     border-radius: 5px; 
     position: relative; 
-    background-color: #fff; 
+    background-color: #fff;
+    margin-left:20px;
 }
 
-
-.check_box:hover .check_mark {
-background-color: #dfdfdf; 
+.check_box:hover{
+    background-color: #dfdfdf; 
 }
 
-.hidden_check_mark:checked + .check_mark::after {
-content: "";
-position: relative;
-display: block;
-left: 37%;
-top: 11%;
-width: 25%;
-height: 50%;
-border: solid rgb(0, 0, 0);
-border-width: 0 3px 3px 0;
-transform: rotate(45deg); 
+.check_mark {
+    content: "";
+    position: relative;
+    display: none; 
+    left: 37%;
+    top: 11%;
+    width: 25%;
+    height: 50%;
+    border: solid rgb(0, 0, 0);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg); 
+}
+
+.check_box input:checked ~ .check_mark {
+  display: block;
+}
+
+.form_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.alignment_div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.task_input, .date_input {
+    flex-grow: 1;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.task_input {
+    width: 100%;
+}
+
+.date_input {
+    width: 80%;
+}
+
+::placeholder {
+    color: rgb(94, 94, 94);
+}
+
+.add_button {
+    background-color: #ffffff;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+
 }
