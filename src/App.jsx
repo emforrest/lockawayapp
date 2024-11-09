@@ -30,9 +30,9 @@ function App(props) {
         setTasks([...tasks, newTask]);
       }
 
-      function toggleTaskCompleted(id) 
+      function toggleTaskCompleted(id, checked) 
       {
-        console.log('hi');
+        console.log(checked);
       }
 
     return (
@@ -61,5 +61,4 @@ function App(props) {
   
   export default App;
   
-//keep following from Tasks as data, add header bar later
 //https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_todo_list_beginning

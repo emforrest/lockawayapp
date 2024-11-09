@@ -69,6 +69,7 @@ ul, li {
 .item_text {
     margin-left: auto ;
     margin-right: auto;
+    overflow-wrap: anywhere;
 }
 
 .open_date {
@@ -80,6 +81,10 @@ ul, li {
 
 .hidden_check_mark {
     display: none;
+}
+
+.check_box.checked .check_mark {
+    display: block;
 }
 
 /* container allowing a custom check box */
@@ -110,10 +115,6 @@ ul, li {
     border: solid rgb(0, 0, 0);
     border-width: 0 3px 3px 0;
     transform: rotate(45deg); 
-}
-
-.check_box input:checked ~ .check_mark {
-  display: block;
 }
 
 .form_container {
