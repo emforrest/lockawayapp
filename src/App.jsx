@@ -8,12 +8,31 @@ import ListItem from './components/ListItem';
 import Form from './components/Form';
 import FilterButton from './components/FilterButton';
 
+const COMPLETED_FILTER_MAP = {
+  Uncompleted: task => !task.checked,
+  AnyChecked: () => true,
+};
+
+const READY_FILTER_MAP = {
+  Ready: task => () => {
+    dateOfTask = new Date(task.date);
+    return dateOfTask < new Date();
+  },
+  AnyDate: () => true,
+};
 
 function App(props) {
 
     const [tasks, setTasks] = useState(props.tasks);
+    const [completeFilter, setCompleteFilter] = useState('Uncompleted');
+    const [readyFilter, setReadyFilter] = useState('Ready');
 
-    const taskList = tasks?.map((item) => 
+    console.log(completeFilter, readyFilter);
+
+    const taskList = tasks
+    .filter(COMPLETED_FILTER_MAP[completeFilter])
+    .filter(READY_FILTER_MAP[readyFilter])
+    .map((item) => 
       <ListItem 
         id={item.id} 
         task={item.task} 
@@ -40,10 +59,8 @@ function App(props) {
         <div className="header_bar"></div>
 
         <div className="buttons">
-          {/* <button>Open Vault</button>
-          <button>Show Completed</button> */}
-          <FilterButton />
-          <FilterButton />
+          <FilterButton text={"Open Vault"} altText={"Close Vault"} setFilter={setReadyFilter}/>
+          <FilterButton text={"Show Completed"} altText={"Hide Completed"} setFilter={setCompleteFilter}/>
         </div>
 
         <h1>Active Tasks</h1>
