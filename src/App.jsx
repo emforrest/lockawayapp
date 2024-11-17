@@ -9,17 +9,28 @@ import Form from './components/Form';
 import FilterButton from './components/FilterButton';
 
 const COMPLETED_FILTER_MAP = {
-  Uncompleted: task => !task.checked,
+  Uncompleted: (item) => !item.checked,
   AnyChecked: () => true,
 };
 
 const READY_FILTER_MAP = {
-  Ready: task => () => {
-    dateOfTask = new Date(task.date);
+  Ready: (item) => {
+    if (item.date === '') {
+      return true
+    }
+    const dateOfTask = new Date(convertToISODateTime(item.date));
+    console.log(dateOfTask.toString(), new Date().toString(), (dateOfTask < new Date()));
     return dateOfTask < new Date();
   },
   AnyDate: () => true,
 };
+
+function convertToISODateTime(datetime) {
+  const [date, time] = datetime.split(' ');
+  const [day, month, year] = date.split('/');
+  return `${year}-${month}-${day}T${time}`;
+  ;
+}
 
 function App(props) {
 
@@ -27,7 +38,7 @@ function App(props) {
     const [completeFilter, setCompleteFilter] = useState('Uncompleted');
     const [readyFilter, setReadyFilter] = useState('Ready');
 
-    console.log(completeFilter, readyFilter);
+    console.log(tasks);
 
     const taskList = tasks
     .filter(COMPLETED_FILTER_MAP[completeFilter])
@@ -51,7 +62,13 @@ function App(props) {
 
       function toggleTaskCompleted(id, checked) 
       {
-        console.log(checked);
+        const updatedTasks = tasks.map((task) => {
+          if (id === task.id) {
+            return { ...task, checked: checked };
+          }
+          return task;
+        });
+        setTasks(updatedTasks);
       }
 
     return (

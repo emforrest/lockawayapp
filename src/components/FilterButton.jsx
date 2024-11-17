@@ -7,12 +7,7 @@ function FilterButton(props)
 
     function handleButtonClick()
     {
-        var textPlaceholder = text;
-        setText(altText);
-        setAltText(textPlaceholder);
 
-        console.log(props.setFilter)
-        
         switch (text)
         {
             case "Open Vault":
@@ -30,6 +25,10 @@ function FilterButton(props)
             default:
                 break
         }
+
+        var textPlaceholder = text;
+        setText(altText);
+        setAltText(textPlaceholder);
     }
 
     return (

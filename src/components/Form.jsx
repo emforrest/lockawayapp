@@ -12,7 +12,6 @@ function Form(props)
 
     function handleDateChange(event)
     {
-        console.log(typeof event.target.value);
         setTaskDate(event.target.value);
     }
 
