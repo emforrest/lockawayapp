@@ -19,7 +19,6 @@ const READY_FILTER_MAP = {
       return true
     }
     const dateOfTask = new Date(convertToISODateTime(item.date));
-    console.log(dateOfTask.toString(), new Date().toString(), (dateOfTask < new Date()));
     return dateOfTask < new Date();
   },
   AnyDate: () => true,
@@ -38,8 +37,6 @@ function App(props) {
     const [completeFilter, setCompleteFilter] = useState('Uncompleted');
     const [readyFilter, setReadyFilter] = useState('Ready');
 
-    console.log(tasks);
-
     const taskList = tasks
     .filter(COMPLETED_FILTER_MAP[completeFilter])
     .filter(READY_FILTER_MAP[readyFilter])
@@ -51,6 +48,7 @@ function App(props) {
         checked={item.checked}
         key={item.id}
         toggleTaskCompleted={toggleTaskCompleted}
+        editTask={editTask}
       />);
 
       function addTask(name, date) 
@@ -65,6 +63,17 @@ function App(props) {
         const updatedTasks = tasks.map((task) => {
           if (id === task.id) {
             return { ...task, checked: checked };
+          }
+          return task;
+        });
+        setTasks(updatedTasks);
+      }
+
+      function editTask(id, newName, newDate) 
+      {
+        const updatedTasks = tasks.map((task) => {
+          if (id === task.id) {
+            return { ...task, task: newName, date: newDate };
           }
           return task;
         });

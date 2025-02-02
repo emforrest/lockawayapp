@@ -40,6 +40,11 @@ ul, li {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .custom_checkbox_container {
     display: inline-block;
     cursor: pointer;
@@ -79,32 +84,53 @@ ul, li {
     width: 150px;
 }
 
-.hidden_check_mark {
-    display: none;
+.blueText {
+    font-size: 0.8em;
+    color: #0000ee;
 }
 
-.check_box.checked .check_mark {
-    display: block;
+.redText {
+    font-size: 0.8em;
+    color: #ee0000;
+    margin-right: 10px;
 }
+
+/*Check box - don't touch*/
 
 /* container allowing a custom check box */
-.check_box {
+.check_box_label {
     display: inline-flex;
-    cursor: pointer;
-    width: 1.2em; 
-    height: 1.2em;
-    border: 2px solid #ccc;
-    border-radius: 5px; 
+    cursor: pointer; 
     position: relative; 
-    background-color: #fff;
     margin-left:20px;
 }
 
-.check_box:hover{
-    background-color: #dfdfdf; 
+.check_box_label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
 }
 
 .check_mark {
+    position: relative;
+    width: 1.2em; 
+    height: 1.2em;
+    border: 2px solid #ccc;
+    border-radius: 5px;  
+    background-color: #fff;
+}
+
+.check_mark:hover{
+    background-color: #dfdfdf; 
+}
+
+.check_box_label input:checked ~ .check_mark:after {
+    display:block;
+}
+
+.check_box_label .check_mark:after {
     content: "";
     position: relative;
     display: none; 
@@ -114,8 +140,10 @@ ul, li {
     height: 50%;
     border: solid rgb(0, 0, 0);
     border-width: 0 3px 3px 0;
-    transform: rotate(45deg); 
+    transform: rotate(45deg);
 }
+
+/*end of check box*/
 
 .form_container {
     display: flex;
