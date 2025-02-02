@@ -69,6 +69,7 @@ ul, li {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    min-height: 30px;
 }
 
 .item_text {
@@ -87,12 +88,14 @@ ul, li {
 .blueText {
     font-size: 0.8em;
     color: #0000ee;
+    cursor: pointer;
 }
 
 .redText {
     font-size: 0.8em;
     color: #ee0000;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 /*Check box - don't touch*/
@@ -111,6 +114,11 @@ ul, li {
     cursor: pointer;
     height: 0;
     width: 0;
+}
+
+.check_box_label:focus-within {
+    outline: 2px solid black;
+    border-radius: 4px;
 }
 
 .check_mark {

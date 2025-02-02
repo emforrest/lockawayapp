@@ -20,7 +20,12 @@ function ListItem(props)
                 <span>{props.date}</span>
             </div>
 
-            <div className='blueText' role='button' tabIndex={0}>
+            <div 
+                className='blueText' 
+                role='button' 
+                tabIndex={0} 
+                onClick={() => setIsEditing(true)}
+            >
                 <span>Edit</span>
             </div>
             
@@ -50,14 +55,22 @@ function ListItem(props)
                 <input type="datetime-local" defaultValue={props.date}/>
             </div>
 
-            <div className='redText' role='button' tabIndex={0}>
+            <div 
+                className='redText' 
+                role='button' 
+                tabIndex={0}
+            >
                 <span>Delete</span>
             </div>
 
-            <div className='blueText' role='button' tabIndex={0}>
+            <div 
+                className='blueText' 
+                role='button' 
+                tabIndex={0} 
+                onClick={() => setIsEditing(false)}
+            >
                 <span>Close</span>
             </div>
-            
         </div>
     )
 
