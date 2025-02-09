@@ -5,6 +5,7 @@ function ListItem(props)
     const [checked, setChecked] = useState(props.checked);
     const [isEditing, setIsEditing] = useState(false);
     const hasMounted = useRef(false);
+    const taskNameRef = useRef(false);
 
     const handleCheck = (event) => {
         setChecked(checked => !checked);
@@ -37,6 +38,7 @@ function ListItem(props)
                     id={props.id}
                     checked={checked}
                     onChange={handleCheck}
+                    className='styled_input'
                 >
                 </input>
                 <span className="check_mark"></span>
@@ -48,11 +50,16 @@ function ListItem(props)
     const editTemplate = (
         <div className="item">
             <div className='item_text'>
-                <input type="text" defaultValue={props.task}/>
+                <input 
+                    className='styledInput'
+                    type='text' 
+                    ref={taskNameRef}
+                    defaultValue={props.task}
+                ></input>
             </div>
 
             <div className='open_date'>
-                <input type="datetime-local" defaultValue={props.date}/>
+            <span>{props.date}</span>
             </div>
 
             <div 
@@ -81,6 +88,12 @@ function ListItem(props)
             hasMounted.current = true;
         }
     }, [checked]);
+
+    useEffect(() => {
+        if (isEditing && taskNameRef.current) {
+            taskNameRef.current.focus();
+        }
+    }, [isEditing]);
 
     return(
         <div className="item_container">
