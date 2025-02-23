@@ -5,6 +5,7 @@ function ListItem(props)
     const [checked, setChecked] = useState(props.checked);
     const [isEditing, setIsEditing] = useState(false);
     const [newName, setNewName] = useState(props.task);
+    const [newDate, setNewDate] = useState(props.convertToISODateTime(props.date));
     const hasMounted = useRef(false);
     const taskNameRef = useRef(false);
 
@@ -13,6 +14,7 @@ function ListItem(props)
     }
 
     const handleChangeName = (e) => setNewName(e.target.value);
+    const handleChangeDate = (e) => setNewDate(e.target.value);
 
     const viewTemplate = (
         <div className="item">
@@ -54,16 +56,19 @@ function ListItem(props)
         <div className="item">
             <div className='item_text'>
                 <input 
-                    className='styled_input'
+                    className='edit_text_input'
                     type='text' 
                     ref={taskNameRef}
                     value={newName}
                     onChange={handleChangeName}
                 ></input>
-            </div>
 
-            <div className='open_date'>
-            <span>{props.date}</span>
+                <input
+                    type="datetime-local"
+                    value={newDate}
+                    onChange={handleChangeDate}
+                    >
+                </input>
             </div>
 
             <div 
@@ -79,7 +84,7 @@ function ListItem(props)
                 role='button' 
                 tabIndex={0} 
                 onClick={() => {
-                    props.editTask(props.id, newName, props.date); //edit to have the new date
+                    props.editTask(props.id, newName, newDate);
                     setIsEditing(false);
                 }}
             >

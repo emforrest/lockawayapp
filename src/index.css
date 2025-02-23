@@ -64,10 +64,11 @@ ul, li {
     overflow-wrap: anywhere;
 }
 
-.styled_input {
+.edit_text_input {
     color: rgb(0, 0, 0);
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1em;
+    margin-right: 3em;
 }
 
 .open_date {
@@ -194,5 +195,4 @@ ul, li {
     background-color: #ffffff;
     border: 2px solid #ccc;
     border-radius: 5px;
-
 }

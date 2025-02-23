@@ -49,6 +49,7 @@ function App(props) {
         key={item.id}
         toggleTaskCompleted={toggleTaskCompleted}
         editTask={editTask}
+        convertToISODateTime={convertToISODateTime}
       />);
 
       function addTask(name, date) 
@@ -71,6 +72,7 @@ function App(props) {
 
       function editTask(id, newName, newDate) 
       {
+        newDate = newDate ? format(newDate, 'dd/MM/yyyy HH:mm') : '';
         const updatedTasks = tasks.map((task) => {
           if (id === task.id) {
             return { ...task, task: newName, date: newDate };
