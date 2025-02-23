@@ -4,12 +4,15 @@ function ListItem(props)
 {
     const [checked, setChecked] = useState(props.checked);
     const [isEditing, setIsEditing] = useState(false);
+    const [newName, setNewName] = useState(props.task);
     const hasMounted = useRef(false);
     const taskNameRef = useRef(false);
 
     const handleCheck = (event) => {
         setChecked(checked => !checked);
     }
+
+    const handleChangeName = (e) => setNewName(e.target.value);
 
     const viewTemplate = (
         <div className="item">
@@ -51,10 +54,11 @@ function ListItem(props)
         <div className="item">
             <div className='item_text'>
                 <input 
-                    className='styledInput'
+                    className='styled_input'
                     type='text' 
                     ref={taskNameRef}
-                    defaultValue={props.task}
+                    value={newName}
+                    onChange={handleChangeName}
                 ></input>
             </div>
 
@@ -74,9 +78,12 @@ function ListItem(props)
                 className='blueText' 
                 role='button' 
                 tabIndex={0} 
-                onClick={() => setIsEditing(false)}
+                onClick={() => {
+                    props.editTask(props.id, newName, props.date); //edit to have the new date
+                    setIsEditing(false);
+                }}
             >
-                <span>Close</span>
+                <span>Save</span>
             </div>
         </div>
     )

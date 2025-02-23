@@ -65,8 +65,9 @@ ul, li {
 }
 
 .styled_input {
-    color: purple;
-    /* fix this */
+    color: rgb(0, 0, 0);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1em;
 }
 
 .open_date {
