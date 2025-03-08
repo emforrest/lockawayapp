@@ -67,8 +67,14 @@ ul, li {
 .edit_text_input {
     color: rgb(0, 0, 0);
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 1em;
+    font-size: 0.8em;
     margin-right: 3em;
+}
+
+.edit_date_input {
+    color: rgb(0, 0, 0);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.8em;
 }
 
 .open_date {
@@ -78,13 +84,13 @@ ul, li {
     width: 150px;
 }
 
-.blueText {
+.blue_text {
     font-size: 0.8em;
     color: #0000ee;
     cursor: pointer;
 }
 
-.redText {
+.red_text {
     font-size: 0.8em;
     color: #ee0000;
     margin-right: 10px;
@@ -195,4 +201,8 @@ ul, li {
     background-color: #ffffff;
     border: 2px solid #ccc;
     border-radius: 5px;
+}
+
+.confirmation_modal_wrapper {
+    z-index: 1000;
 }

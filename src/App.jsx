@@ -1,9 +1,10 @@
 //Imports
-import React from 'react';
-import { useState } from 'react';
+import { React, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { format } from 'date-fns';
+
 import './index.css';
+
 import ListItem from './components/ListItem';
 import Form from './components/Form';
 import FilterButton from './components/FilterButton';
@@ -49,6 +50,7 @@ function App(props) {
         key={item.id}
         toggleTaskCompleted={toggleTaskCompleted}
         editTask={editTask}
+        deleteTask={deleteTask}
         convertToISODateTime={convertToISODateTime}
       />);
 
@@ -80,6 +82,12 @@ function App(props) {
           return task;
         });
         setTasks(updatedTasks);
+      }
+
+      function deleteTask(id, name)
+      {
+        const remainingTasks = tasks.filter((task) => task.id !== id);
+        setTasks(remainingTasks);
       }
 
     return (

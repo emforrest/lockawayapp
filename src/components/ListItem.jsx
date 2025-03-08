@@ -1,11 +1,15 @@
 import React, {useEffect, useState, useRef} from 'react';
 
+import ConfirmationModal from './ConfirmationModal';
+
 function ListItem(props)
 {
     const [checked, setChecked] = useState(props.checked);
     const [isEditing, setIsEditing] = useState(false);
     const [newName, setNewName] = useState(props.task);
     const [newDate, setNewDate] = useState(props.convertToISODateTime(props.date));
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
     const hasMounted = useRef(false);
     const taskNameRef = useRef(false);
 
@@ -15,6 +19,10 @@ function ListItem(props)
 
     const handleChangeName = (e) => setNewName(e.target.value);
     const handleChangeDate = (e) => setNewDate(e.target.value);
+
+    const handleDeleteClick = () => setShowDeleteModal(true);
+
+    const closeModal = () => setShowDeleteModal(false);
 
     const viewTemplate = (
         <div className="item">
@@ -27,7 +35,7 @@ function ListItem(props)
             </div>
 
             <div 
-                className='blueText' 
+                className='blue_text' 
                 role='button' 
                 tabIndex={0} 
                 onClick={() => setIsEditing(true)}
@@ -64,6 +72,7 @@ function ListItem(props)
                 ></input>
 
                 <input
+                    className='edit_date_input'
                     type="datetime-local"
                     value={newDate}
                     onChange={handleChangeDate}
@@ -72,15 +81,16 @@ function ListItem(props)
             </div>
 
             <div 
-                className='redText' 
+                className='red_text' 
                 role='button' 
                 tabIndex={0}
+                onClick={handleDeleteClick}
             >
                 <span>Delete</span>
             </div>
 
             <div 
-                className='blueText' 
+                className='blue_text' 
                 role='button' 
                 tabIndex={0} 
                 onClick={() => {
@@ -107,11 +117,23 @@ function ListItem(props)
         }
     }, [isEditing]);
 
-    return(
+    return (
         <div className="item_container">
             {isEditing ? editTemplate : viewTemplate}
+
+            {showDeleteModal && (
+                <ConfirmationModal 
+                    modalText={`Are you sure you want to delete task: ${props.task}?`} 
+                    button1Text={"Delete"} 
+                    onButton1Click={() => {
+                        props.deleteTask(props.id, props.task);
+                        closeModal();
+                    }}
+                    button2Text={"Back"}
+                    onButton2Click={closeModal}
+                />
+            )}
         </div>
-       
     );
 }
 
