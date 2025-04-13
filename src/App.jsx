@@ -26,10 +26,12 @@ const READY_FILTER_MAP = {
 };
 
 function convertToISODateTime(datetime) {
-  const [date, time] = datetime.split(' ');
-  const [day, month, year] = date.split('/');
-  return `${year}-${month}-${day}T${time}`;
-  ;
+  if (datetime) {
+    const [date, time] = datetime.split(' ');
+    const [day, month, year] = date.split('/');
+    return `${year}-${month}-${day}T${time}`;
+  }
+  return '';
 }
 
 function App(props) {
@@ -69,12 +71,24 @@ function App(props) {
           }
           return task;
         });
-        setTasks(updatedTasks);
+        if (checked) {
+          setTimeout (() => {
+            setTasks(updatedTasks);
+          }, 1000);
+        } else {
+          setTasks(updatedTasks);
+        }
       }
 
       function editTask(id, newName, newDate) 
       {
-        newDate = newDate ? format(newDate, 'dd/MM/yyyy HH:mm') : '';
+        if (!newDate || newDate.includes('undefined')) {
+          newDate = '';
+        }
+        else {
+          newDate = format(newDate, 'dd/MM/yyyy HH:mm')
+        }
+
         const updatedTasks = tasks.map((task) => {
           if (id === task.id) {
             return { ...task, task: newName, date: newDate };

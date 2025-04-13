@@ -59,9 +59,18 @@ ul, li {
 }
 
 .item_text {
-    margin-left: auto ;
+    margin-left: auto;
     margin-right: auto;
     overflow-wrap: anywhere;
+}
+
+.item_right_side {
+    width: 230px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 30px;
 }
 
 .edit_text_input {
@@ -80,8 +89,9 @@ ul, li {
 .open_date {
     font-size: 0.8em;
     color: rgb(94, 94, 94);
-    float: right;
+    display: inline-block;
     width: 150px;
+    text-wrap: nowrap;
 }
 
 .blue_text {
@@ -204,5 +214,36 @@ ul, li {
 }
 
 .confirmation_modal_wrapper {
-    z-index: 1000;
+    position: fixed;
+    top: 2rem;
+    left: 0;
+    width: 50rem;
+    height: 18rem;
+    word-wrap: break-word;
+    border: 1;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.modal_button_one {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+}
+
+.modal_button_two {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
 }
