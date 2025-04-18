@@ -43,7 +43,7 @@ function ListItem(props)
                     role='button' 
                     tabIndex={0} 
                     onClick={() => setIsEditing(true)}
-                >
+                    >
                     <span>Edit</span>
                 </div>
                 
@@ -56,7 +56,7 @@ function ListItem(props)
                         checked={checked}
                         onChange={handleCheck}
                         className='styled_input'
-                    >
+                        >
                     </input>
                     <span className="check_mark"></span>
                 </label>
@@ -73,7 +73,8 @@ function ListItem(props)
                     ref={taskNameRef}
                     value={newName}
                     onChange={handleChangeName}
-                ></input>
+                    >
+                </input>
             
                 <input
                     className='edit_date_input'
@@ -91,7 +92,7 @@ function ListItem(props)
                     role='button' 
                     tabIndex={0}
                     onClick={handleDeleteClick}
-                >
+                    >
                     <span>Delete</span>
                 </div>
 
