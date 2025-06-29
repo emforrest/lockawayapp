@@ -247,3 +247,19 @@ ul, li {
     bottom: 5%;
     right: 5%;
 }
+
+.buttons {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.save_button {
+    padding: 10px;
+}
+
+.save_button img {
+    height: 25px;
+    width: 25px;
+    display: block;
+}

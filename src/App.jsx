@@ -2,12 +2,14 @@
 import { React, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { format } from 'date-fns';
+import fs from 'fs';
 
 import './index.css';
 
 import ListItem from './components/ListItem';
 import Form from './components/Form';
 import FilterButton from './components/FilterButton';
+import SaveButton from './components/SaveButton';
 
 const COMPLETED_FILTER_MAP = {
   Uncompleted: (item) => !item.checked,
@@ -104,13 +106,41 @@ function App(props) {
         setTasks(remainingTasks);
       }
 
+      function saveTasks() {
+        fs.open('../data/taskData.csv', 'w', (err, file) => {
+          if (err) {
+            console.error('Error opening taskDatafile:', err);
+          }
+          console.log('taskData file opened successfully');
+
+          const csvContent = tasks.map(task => {
+            `${task.id},${task.task},${task.date},${task.checked}`.join(',');
+          });
+
+          fs.writeFile(file, csvContent.join('\n'), (err) => {
+            if (err) {
+              console.error('Error writing to taskData file:', err);
+            }
+          });
+
+          fs.close(file, (err) => {
+            if (err) {
+              console.error('Error closing taskData file:', err);
+            } 
+          });
+        
+        });
+
+      }
+
     return (
       <>
         <div className="header_bar"></div>
 
         <div className="buttons">
           <FilterButton text={"Open Vault"} altText={"Close Vault"} setFilter={setReadyFilter}/>
-          <FilterButton text={"Show Completed"} altText={"Hide Completed"} setFilter={setCompleteFilter}/>
+          <FilterButton text={"Show Completed"} altText={"Hide Completed"} setFilter={setCompleteFilter}/> 
+          <SaveButton saveTasks={saveTasks}/>
         </div>
 
         <h1>Active Tasks</h1>
