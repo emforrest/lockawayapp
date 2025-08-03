@@ -1,10 +1,11 @@
 body {
-    background-color: #eae4ee;
-    color: rgb(0, 0, 0);
+    background-image: linear-gradient(#eae4ee, #c582f1);
+    color: #202020;
     padding: 40px;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 1.3em;
     text-align: center;
+    min-height: 100vh;
 }
 
 h1 {
@@ -13,11 +14,11 @@ h1 {
 }
 
 button {
-    background-color: #b4b4b4;
-    color: rgb(0, 0, 0);
+    background-color: #c0c0c0;
+    color: #202020;
     padding: 10px 20px;
     margin: 10px;
-    border: none;
+    border: 2px solid #404040;
     border-radius: 3px;
     cursor: pointer;
     font-size: 1em;
@@ -35,7 +36,8 @@ ul, li {
     align-items: center;
     padding: 10px;
     margin: 10px;
-    background-color: #fff;
+    background-color: #fafafa;
+    border: 2px solid #b0b0b0;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -46,7 +48,7 @@ ul, li {
 }
 
 .item_container:hover {
-    background-color: #f1f1f1;
+    background-color: #e6e6e6;
 }
 
 .item {
@@ -74,21 +76,21 @@ ul, li {
 }
 
 .edit_text_input {
-    color: rgb(0, 0, 0);
+    color: #202020;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 0.8em;
     margin-right: 3em;
 }
 
 .edit_date_input {
-    color: rgb(0, 0, 0);
+    color: #202020;
     font-family: Helvetica, Arial, sans-serif;
     font-size: 0.8em;
 }
 
 .open_date {
     font-size: 0.8em;
-    color: rgb(94, 94, 94);
+    color: #404040;
     display: inline-block;
     width: 150px;
     text-wrap: nowrap;
@@ -126,7 +128,7 @@ ul, li {
 }
 
 .check_box_label:focus-within {
-    outline: 2px solid black;
+    outline: 2px solid #202020;
     border-radius: 4px;
 }
 
@@ -134,13 +136,13 @@ ul, li {
     position: relative;
     width: 1.2em; 
     height: 1.2em;
-    border: 2px solid #ccc;
+    border: 2px solid #b0b0b0;
     border-radius: 5px;  
-    background-color: #fff;
+    background-color: #fafafa;
 }
 
 .check_mark:hover{
-    background-color: #dfdfdf; 
+    background-color: #e6e6e6; 
 }
 
 .check_box_label input:checked ~ .check_mark:after {
@@ -155,7 +157,7 @@ ul, li {
     top: 11%;
     width: 25%;
     height: 50%;
-    border: solid rgb(0, 0, 0);
+    border: solid #202020;
     border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
@@ -190,7 +192,7 @@ ul, li {
     justify-content: space-between;
     padding: 10px;
     margin: 10px;
-    border: 2px solid #ccc;
+    border: 2px solid #b0b0b0;
     border-radius: 5px;
     box-sizing: border-box;
 }
@@ -204,12 +206,12 @@ ul, li {
 }
 
 ::placeholder {
-    color: rgb(94, 94, 94);
+    color: #404040;
 }
 
 .add_button {
-    background-color: #ffffff;
-    border: 2px solid #ccc;
+    background-color: #fafafa;
+    border: 2px solid #b0b0b0;
     border-radius: 5px;
 }
 
@@ -220,7 +222,8 @@ ul, li {
     width: 50rem;
     height: 18rem;
     word-wrap: break-word;
-    border: 1;
+    color: #202020;
+    border: 2px solid #202020;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 2;

@@ -40,6 +40,12 @@ function App() {
     const [completeFilter, setCompleteFilter] = useState('Uncompleted');
     const [readyFilter, setReadyFilter] = useState('Ready');
 
+    const heading = completeFilter === 'Uncompleted'
+      ? readyFilter === 'Ready'
+        ? 'Current Incomplete Tasks' : 'All Incomplete Tasks'
+      : readyFilter === 'Ready'
+        ? 'Current Tasks' : 'All Tasks'
+
     const taskList = tasks
     .filter(COMPLETED_FILTER_MAP[completeFilter])
     .filter(READY_FILTER_MAP[readyFilter])
@@ -121,12 +127,12 @@ function App() {
         <div className="header_bar"></div>
 
         <div className="buttons">
-          <FilterButton text={"Open Vault"} altText={"Close Vault"} setFilter={setReadyFilter}/>
+          <FilterButton text={"Show Future"} altText={"Hide Future"} setFilter={setReadyFilter}/>
           <FilterButton text={"Show Completed"} altText={"Hide Completed"} setFilter={setCompleteFilter}/> 
           <SaveButton saveTasks={saveTasks}/>
         </div>
 
-        <h1>Active Tasks</h1>
+        <h1>{heading}</h1>
         <Form addTask={addTask}/>
 
         <div className="current_list">

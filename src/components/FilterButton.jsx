@@ -10,10 +10,10 @@ function FilterButton(props)
 
         switch (text)
         {
-            case "Open Vault":
+            case "Show Future":
                 props.setFilter('AnyDate');
                 break;
-            case "Close Vault":
+            case "Hide Future":
                 props.setFilter('Ready');
                 break;
             case "Show Completed":
