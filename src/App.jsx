@@ -1,8 +1,7 @@
 //Imports
-import { React, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { format } from 'date-fns';
-import fs from 'fs';
 
 import './index.css';
 
@@ -36,9 +35,8 @@ function convertToISODateTime(datetime) {
   return '';
 }
 
-function App(props) {
-
-    const [tasks, setTasks] = useState(props.tasks);
+function App() {
+    const [tasks, setTasks] = useState([]);
     const [completeFilter, setCompleteFilter] = useState('Uncompleted');
     const [readyFilter, setReadyFilter] = useState('Ready');
 
@@ -100,38 +98,23 @@ function App(props) {
         setTasks(updatedTasks);
       }
 
-      function deleteTask(id, name)
+      function deleteTask(id)
       {
         const remainingTasks = tasks.filter((task) => task.id !== id);
         setTasks(remainingTasks);
       }
 
       function saveTasks() {
-        fs.open('../data/taskData.csv', 'w', (err, file) => {
-          if (err) {
-            console.error('Error opening taskDatafile:', err);
-          }
-          console.log('taskData file opened successfully');
-
-          const csvContent = tasks.map(task => {
-            `${task.id},${task.task},${task.date},${task.checked}`.join(',');
-          });
-
-          fs.writeFile(file, csvContent.join('\n'), (err) => {
-            if (err) {
-              console.error('Error writing to taskData file:', err);
-            }
-          });
-
-          fs.close(file, (err) => {
-            if (err) {
-              console.error('Error closing taskData file:', err);
-            } 
-          });
-        
-        });
-
+        const tasksString = JSON.stringify(tasks);
+        localStorage.setItem('tasks', tasksString);
       }
+
+      useEffect(() => {
+        const savedTasks = localStorage.getItem('tasks');
+        if (savedTasks) {
+          setTasks(JSON.parse(savedTasks));
+        }
+      }, []);
 
     return (
       <>
@@ -147,9 +130,11 @@ function App(props) {
         <Form addTask={addTask}/>
 
         <div className="current_list">
-          <ul>
+          {taskList.length > 0 ? (
+            <ul>
               {taskList}
           </ul>
+          ) : <p>No tasks.</p>}
           
         </div>
       </>

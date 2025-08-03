@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 function ConfirmationModal(props)
 {
 
@@ -15,7 +13,5 @@ function ConfirmationModal(props)
         </>
     )
 }
-
-
 
 export default ConfirmationModal;

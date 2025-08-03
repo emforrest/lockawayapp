@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import {useEffect, useState, useRef} from 'react';
 
 import ConfirmationModal from './ConfirmationModal';
 
@@ -140,7 +140,7 @@ function ListItem(props)
                     onButton1Click={closeModal}
                     button2Text={"Delete"} 
                     onButton2Click={() => {
-                        props.deleteTask(props.id, props.task);
+                        props.deleteTask(props.id);
                         closeModal();
                     }}
                 />
