@@ -1,5 +1,5 @@
 //Imports
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { nanoid } from 'nanoid';
 import { format } from 'date-fns';
 
@@ -39,6 +39,9 @@ function App() {
     const [tasks, setTasks] = useState([]);
     const [completeFilter, setCompleteFilter] = useState('Uncompleted');
     const [readyFilter, setReadyFilter] = useState('Ready');
+    const [focusAfterDelete, setFocusAfterDelete] = useState(false);
+
+    const headingRef = useRef(null);
 
     const heading = completeFilter === 'Uncompleted'
       ? readyFilter === 'Ready'
@@ -108,6 +111,7 @@ function App() {
       {
         const remainingTasks = tasks.filter((task) => task.id !== id);
         setTasks(remainingTasks);
+        setFocusAfterDelete(true);
       }
 
       function saveTasks() {
@@ -122,6 +126,13 @@ function App() {
         }
       }, []);
 
+      useEffect(() => {
+        if (focusAfterDelete && headingRef.current) {
+          headingRef.current.focus();
+          setFocusAfterDelete(false);
+        }
+      }, [focusAfterDelete]);
+
     return (
       <>
         <div className="header_bar"></div>
@@ -132,7 +143,7 @@ function App() {
           <SaveButton saveTasks={saveTasks}/>
         </div>
 
-        <h1>{heading}</h1>
+        <h1 ref={headingRef} tabIndex={"-1"}>{heading}</h1>
         <Form addTask={addTask}/>
 
         <div className="current_list">
