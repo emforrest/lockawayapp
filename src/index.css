@@ -266,3 +266,8 @@ ul, li {
     width: 25px;
     display: block;
 }
+
+:focus-visible {
+    outline: 2px solid #202020;
+    box-shadow: 2px solid #fafafa;
+}

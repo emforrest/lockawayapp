@@ -14,14 +14,15 @@ function SaveButton(props) {
             }}>
                 <img src={saveImage} alt="Save Tasks" />
             </button>
-            {showSaved && (
-                <ConfirmationModal 
-                    modalText={`Tasks saved.`} 
-                    button1Text={"Back"}
-                    onButton1Click={closeModal}
-                    button2Text={"Ok"} 
-                    onButton2Click={closeModal}
-                />)}
+            
+            <ConfirmationModal 
+                isOpen={showSaved}
+                modalText={`Tasks saved.`} 
+                button1Text={"Back"}
+                onButton1Click={closeModal}
+                button2Text={"Ok"} 
+                onButton2Click={closeModal}
+            />
         </>
     )
 }

@@ -43,6 +43,12 @@ function ListItem(props)
                     role='button' 
                     tabIndex={0} 
                     onClick={() => setIsEditing(true)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key ==' ') {
+                            e.preventDefault();
+                            setIsEditing(true);
+                        }
+                    }}
                     >
                     <span>Edit</span>
                 </div>
@@ -92,6 +98,12 @@ function ListItem(props)
                     role='button' 
                     tabIndex={0}
                     onClick={handleDeleteClick}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key ==' ') {
+                            e.preventDefault();
+                            handleDeleteClick();
+                        }
+                    }}
                     >
                     <span>Delete</span>
                 </div>
@@ -104,6 +116,13 @@ function ListItem(props)
                         props.editTask(props.id, newName, newDate);
                         setIsEditing(false);
                     }}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key ==' ') {
+                            e.preventDefault();
+                            props.editTask(props.id, newName, newDate);
+                            setIsEditing(false);
+                        }
+                    }}  
                 >
                     <span>Save</span>
                 </div>
@@ -132,19 +151,18 @@ function ListItem(props)
             <div className="item_container">
                 {isEditing ? editTemplate : viewTemplate}
             </div>
-
-            {showDeleteModal && (
-                <ConfirmationModal 
-                    modalText={`Are you sure you want to delete task: ${taskText}?`} 
-                    button1Text={"Back"}
-                    onButton1Click={closeModal}
-                    button2Text={"Delete"} 
-                    onButton2Click={() => {
-                        props.deleteTask(props.id);
-                        closeModal();
-                    }}
-                />
-            )}
+            
+            <ConfirmationModal 
+                isOpen={showDeleteModal}
+                modalText={`Are you sure you want to delete task: ${taskText}?`} 
+                button1Text={"Back"}
+                onButton1Click={closeModal}
+                button2Text={"Delete"} 
+                onButton2Click={() => {
+                    props.deleteTask(props.id);
+                    closeModal();
+                }}
+            />
         </>
     );
 }
