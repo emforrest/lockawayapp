@@ -61,6 +61,12 @@ function ListItem(props)
                         id={props.id}
                         checked={checked}
                         onChange={handleCheck}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key ==' ') {
+                                e.preventDefault();
+                                handleCheck();
+                            }
+                        }}
                         className='styled_input'
                         >
                     </input>
